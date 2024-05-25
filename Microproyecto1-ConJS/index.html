@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>El Ahorcado</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="scripts/word-list.js" defer></script>
+    <script src="scripts/script.js" defer></script>
+  </head>
+  <body>
+    <div class="game-dificulty">
+      <div class="content-d">
+        <h4>Bienvenido al ahorcado <p></p>Que dificultad desea usar?</h4>
+        <h4></h4>
+        <div class="dificulty-button">
+          <button>Facil</button>
+          <button>Medio</button>
+          <button>Dificil</button>
+        </div>
+      </div>
+    </div>
+    <div class="game-modal">
+      <div class="content">
+        <img src="imagenes/200w.gif" alt="gif burlandose" />
+        <h4>Perdiste</h4>
+        <p>La palabra correcta era:<b>hola</b></p>
+        <button class="play-again">Volver a jugar</button>
+      </div>
+    </div>
+    <div class="container">
+      <div class="hangman-box">
+        <img class="imagen" src="imagenes/1.jpg" alt="imagen_ahorcado" />
+        <h1>EL AHORCADO</h1>
+      </div>
+      <div class="game-box">
+        <ul class="word-display">
+        </ul>
+        <h4 class="hint-text">
+          Pista:
+          <b></b>
+        </h4>
+        <h4 class="guesses-text">
+          Respuestas incorrectas:
+          <b>0 / 6</b>
+        </h4>
+        <div class="keyboard"></div>
+      </div>
+    </div>
+  </body>
+</html>
