@@ -37,9 +37,17 @@ body {
     text-transform: uppercase;
 
 }
+.hangman-box h6{
+    font-size: 0.7rem;
+    margin-top: 6px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+/*Puntajes*/
 .hangman-box h5{
     font-size: 1rem;
-    margin-top: 10px;
+    margin-top: 5px;
     text-align: center;
     text-transform: uppercase;
 }
@@ -182,10 +190,19 @@ body {
     top: 0;
     width: 100%;
     height: 100%;
-    display: none;
+    opacity: 0;
+    padding: 0 10px;
+    pointer-events: none;
+    z-index: 999;
+    display: flex;
     align-items: center;
     justify-content: center;
     background: rgba(0, 0, 0, 0.6);
+    transition: opacity 0.4s ease;
+}
+.game-dificulty.show{
+    opacity: 1;
+    pointer-events: auto;
 }
 .game-dificulty h4 {
     font-size: 1.15rem;
@@ -194,7 +211,7 @@ body {
 }
 .game-dificulty  .content-d {
     background: #fff;
-    max-width: 220px;
+    max-width: 250px;
     width: 100%;
     text-align: center;
     border-radius: 10px;
