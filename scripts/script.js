@@ -18,7 +18,7 @@ const maxGuessesD = 4;
 bestpoints = 0;
 points = 0;
 victorias = 0;
-
+usedWords = [];
 
 
 const resetGame = () => {
@@ -51,26 +51,50 @@ const getRandomWordF = () => {
     //selecciones una palabras random de la lista facil
     const{ word, hint } = wordListF[Math.floor(Math.random() * wordListF.length)];
     currentWord = word;
+    
+  //verifica si la palabra ya fue usada
+  if(usedWords.includes(currentWord)){
+    getRandomWordF();
+  }
+  else{
+    usedWords.push(currentWord);
     console.log(word);
     document.querySelector(".hint-text b").innerText = hint;
     resetGame();
+  }
 }
 const getRandomWordM = () => {
   //selecciones una palabras random de la lista media
   
   const{ word, hint } = wordListM[Math.floor(Math.random() * wordListM.length)];
   currentWord = word;
-  console.log(word);
-  document.querySelector(".hint-text b").innerText = hint;
-  resetGame();
+
+  //verifica si la palabra ya fue usada
+  if(usedWords.includes(currentWord)){
+    getRandomWordM();
+  }
+  else{
+    usedWords.push(currentWord);
+    console.log(word);
+    document.querySelector(".hint-text b").innerText = hint;
+    resetGame();
+  }
 }
 const getRandomWordH = () => {
   //selecciones una palabras random de la lista dificil
   const{ word, hint } = wordListH[Math.floor(Math.random() * wordListH.length)];
   currentWord = word;
-  console.log(word);
-  document.querySelector(".hint-text b").innerText = hint;
-  resetGame();
+  
+  //verifica si la palabra ya fue usada
+  if(usedWords.includes(currentWord)){
+    getRandomWordH();
+  }
+  else{
+    usedWords.push(currentWord);
+    console.log(word);
+    document.querySelector(".hint-text b").innerText = hint;
+    resetGame();
+  }
 }
 
 const gameDificulty = () => { 
