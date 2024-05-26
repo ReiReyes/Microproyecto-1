@@ -31,14 +31,13 @@ body {
 }
 /*el nombre del juego*/
 .hangman-box h1 {
-    font-size: 1.50rem;
-    margin-top: 20px;
+    font-size: 1.2rem;
+    margin-top: 13px;
     text-align: center;
     text-transform: uppercase;
-
 }
 .hangman-box h6{
-    font-size: 0.7rem;
+    font-size: 0.95rem;
     margin-top: 6px;
     text-align: center;
     text-transform: uppercase;
@@ -53,7 +52,14 @@ body {
 }
 .hangman-box h3{
     font-size: 0.7rem;
-    margin-top: 8px;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.hangman-box h2{
+    font-size: 0.7rem;
+    margin-top: 3px;
     text-align: center;
     text-transform: uppercase;
 }
@@ -186,12 +192,12 @@ body {
 /*dificultad del juego*/
 .game-dificulty {
     position: fixed;
-    left:0;
+    left: 0;
     top: 0;
     width: 100%;
     height: 100%;
     opacity: 0;
-    padding: 0 10px;
+    padding: 15px;
     pointer-events: none;
     z-index: 999;
     display: flex;
@@ -205,17 +211,16 @@ body {
     pointer-events: auto;
 }
 .game-dificulty h4 {
-    font-size: 1.15rem;
-    margin: 15px 0 30px;
+    font-size: 1.2rem;
     font-weight: 500;
 }
 .game-dificulty  .content-d {
     background: #fff;
-    max-width: 250px;
+    max-width: 350px;
     width: 100%;
     text-align: center;
     border-radius: 10px;
-    padding: 30px;
+    padding: 25px;
 }
 .game-dificulty h4{
     padding-bottom: 4px;
@@ -223,6 +228,16 @@ body {
 
 .game-dificulty button {
     padding: 5px 5px;
+    font-size: 0.93rem;
+}
+
+.game-dificulty h2{
+    font-size: 0.8rem;
+    margin-bottom: 15px;
+    text-align: left;
+    margin-left: 5%;
+    margin-right: 5%;
+    font-weight: 400;
 }
 
 @media (max-width: 728px){

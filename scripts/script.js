@@ -10,12 +10,14 @@ const facil = document.querySelector(".f");
 const media = document.querySelector(".m");
 const dificil = document.querySelector(".d");
 
-let currentWord, correctLetters, wrongGuessCount, bestpoints, points, dificultad ;
+
+let currentWord, correctLetters, wrongGuessCount, bestpoints, points, dificultad, victorias ;
 const maxGuessesF = 12;
 const maxGuessesM = 6;
 const maxGuessesD = 4;
 bestpoints = 0;
 points = 0;
+victorias = 0;
 
 
 
@@ -45,15 +47,32 @@ const resetGame = () => {
   gameModal.classList.remove("show");
 }
 
-const getRandomWord = () => {
-    //selecciones una palabras random con su pista de wordList
-    
-    const{ word, hint } = wordList[Math.floor(Math.random() * wordList.length)];
+const getRandomWordF = () => {
+    //selecciones una palabras random de la lista facil
+    const{ word, hint } = wordListF[Math.floor(Math.random() * wordListF.length)];
     currentWord = word;
     console.log(word);
     document.querySelector(".hint-text b").innerText = hint;
     resetGame();
 }
+const getRandomWordM = () => {
+  //selecciones una palabras random de la lista media
+  
+  const{ word, hint } = wordListM[Math.floor(Math.random() * wordListM.length)];
+  currentWord = word;
+  console.log(word);
+  document.querySelector(".hint-text b").innerText = hint;
+  resetGame();
+}
+const getRandomWordH = () => {
+  //selecciones una palabras random de la lista dificil
+  const{ word, hint } = wordListH[Math.floor(Math.random() * wordListH.length)];
+  currentWord = word;
+  console.log(word);
+  document.querySelector(".hint-text b").innerText = hint;
+  resetGame();
+}
+
 const gameDificulty = () => { 
   dificulty.classList.add("show");
   facil.addEventListener("click", easy);
@@ -62,19 +81,19 @@ const gameDificulty = () => {
 }
 const easy= () => {
   dificultad = "facil";
-  getRandomWord();
+  getRandomWordF();
   hangman.querySelector("h6").innerText= `Dificultad: ${dificultad}`;
   dificulty.classList.remove("show")
 }
 const medium = () =>{
   dificultad = "medio";
-  getRandomWord();
+  getRandomWordM();
   hangman.querySelector("h6").innerText= `Dificultad: ${dificultad}`;
   dificulty.classList.remove("show");
 }
 const hard = () =>{
   dificultad = "dificil";
-  getRandomWord();
+  getRandomWordH();
   hangman.querySelector("h6").innerText= `Dificultad: ${dificultad}`;
   dificulty.classList.remove("show");
 }
@@ -89,48 +108,59 @@ const gameOver = (isVictory) => {
     gameModal.querySelector("p").innerHTML = `${modalText} <b>${currentWord}</b>`;
     gameModal.classList.add("show");
   }, 300)
-  // suma el puntaje actual si adivino la palabra\
 
+  // suma el puntaje actual si adivino la palabra\
   if(dificultad === "facil"){
     
     if(wrongGuessCount !==12){
       points += (maxGuessesF - wrongGuessCount)/2;
+      victorias += 1;
       hangman.querySelector("h3").innerText = `Puntaje Actual: ${points} pts`;
+      hangman.querySelector("h2").innerText = `racha de victorias: ${victorias}`;
       if(points > bestpoints){
         bestpoints = points;
         hangman.querySelector("h5").innerText = `Mejor Puntaje: ${bestpoints} pts`;
       }
     }else{
       points = 0;
+      victorias = 0;
       hangman.querySelector("h3").innerText = `Puntaje Actual: ${points} pts`;
+      hangman.querySelector("h2").innerText = `racha de victorias: ${victorias}`;
     }
   }else if(dificultad === "medio"){
     
   if(wrongGuessCount !==6){
     points += maxGuessesM - wrongGuessCount;
+    victorias += 1;
     hangman.querySelector("h3").innerText = `Puntaje Actual: ${points} pts`;
+    hangman.querySelector("h2").innerText = `racha de victorias: ${victorias}`;
     if(points > bestpoints){
       bestpoints = points;
       hangman.querySelector("h5").innerText = `Mejor Puntaje: ${bestpoints} pts`;
     }
     }else{
       points = 0;
+      victorias = 0;
       hangman.querySelector("h3").innerText = `Puntaje Actual: ${points} pts`;
+      hangman.querySelector("h2").innerText = `racha de victorias: ${victorias}`;
     }
   }else if(dificultad === "dificil"){
     
     if(wrongGuessCount !== 4){
       points += maxGuessesD*3 - wrongGuessCount*2;
-      
+      victorias += 1;
       hangman.querySelector("h3").innerText = `Puntaje Actual: ${points} pts`;
+      hangman.querySelector("h2").innerText = `racha de victorias: ${victorias}`;
       if(points > bestpoints){
         bestpoints = points;
         hangman.querySelector("h5").innerText = `Mejor Puntaje: ${bestpoints} pts`;
+        
       }
     }else{
-      
+      victorias = 0;
       points = 0;
       hangman.querySelector("h3").innerText = `Puntaje Actual: ${points} pts`;
+      hangman.querySelector("h2").innerText = `racha de victorias: ${victorias}`;
     }}
 }
 
@@ -189,5 +219,16 @@ for (let index = 97; index <= 122; index++) {
     button.addEventListener("click", e => initGame(e.target, String.fromCharCode(index)))
 }
 
+//Escoge de que lista sacar la siguiente palabra
+const ResetCond = () => {
+  if(dificultad === "facil"){
+    getRandomWordF();
+  }else if(dificultad === "medio"){
+    getRandomWordM();
+  }else if(dificultad === "dificil"){
+    getRandomWordH();
+  }
+}
+
+playAgainBtn.addEventListener("click", ResetCond);
 gameDificulty();
-playAgainBtn.addEventListener("click", getRandomWord);
