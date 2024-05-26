@@ -154,7 +154,7 @@ const gameOver = (isVictory) => {
   }else if(dificultad === "medio"){
     
   if(wrongGuessCount !==6){
-    points += maxGuessesM - wrongGuessCount;
+    points += maxGuessesM+2 - wrongGuessCount;
     victorias += 1;
     hangman.querySelector("h3").innerText = `Puntaje Actual: ${points} pts`;
     hangman.querySelector("h2").innerText = `racha de victorias: ${victorias}`;
