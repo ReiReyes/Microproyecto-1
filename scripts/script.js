@@ -4,9 +4,12 @@ const guessesText = document.querySelector(".guesses-text b");
 const keyboardDiv = document.querySelector(".keyboard");
 const gameModal = document.querySelector(".game-modal");
 const playAgainBtn = document.querySelector(".play-again");
+const hangman = document.querySelector(".hangman-box");
 
-let currentWord, correctLetters, wrongGuessCount;
+let currentWord, correctLetters, wrongGuessCount, bestpoints, points;
 const maxGuesses = 6;
+bestpoints = 0;
+points = 0;
 
 const resetGame = () => {
   //Funcion que le hace reset al juego y su interfaz
@@ -37,7 +40,19 @@ const gameOver = (isVictory) => {
     gameModal.querySelector("p").innerHTML = `${modalText} <b>${currentWord}</b>`;
     gameModal.classList.add("show");
   }, 300)
+  if(wrongGuessCount !==6){
+    points += maxGuesses - wrongGuessCount;
+    hangman.querySelector("h3").innerText = `Puntaje Actual: ${points} pts`;
+    if(points > bestpoints){
+      bestpoints = points;
+      hangman.querySelector("h5").innerText = `Mejor Puntaje: ${bestpoints} pts`;
+    }
+  }else{
+    points = 0;
+    hangman.querySelector("h3").innerText = `Puntaje Actual: ${points} pts`;
+  }
 }
+
 
 const initGame = (button, clickedLetter) => {
     //Revisa si la letra seleccionada esta en la palabra
@@ -72,6 +87,7 @@ for (let index = 97; index <= 122; index++) {
     keyboardDiv.appendChild(button);
     button.addEventListener("click", e => initGame(e.target, String.fromCharCode(index)))
 }
+
 
 getRandomWord(); 
 playAgainBtn.addEventListener("click", getRandomWord);

@@ -37,6 +37,19 @@ body {
     text-transform: uppercase;
 
 }
+.hangman-box h5{
+    font-size: 1rem;
+    margin-top: 10px;
+    text-align: center;
+    text-transform: uppercase;
+}
+.hangman-box h3{
+    font-size: 0.7rem;
+    margin-top: 8px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
 /* los formatos de las letras sin adivinar*/
 .word-display {
     display: flex;
